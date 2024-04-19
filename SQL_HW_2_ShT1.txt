@@ -1,0 +1,40 @@
+create schema QA;
+create table QA.car_brands(
+id int primary key,
+title varchar(255) not null);
+create table QA.car_models(
+id int primary key,
+car_brand_id int,
+foreign key (car_brand_id) references car_brands(id),
+title varchar(255) not null);
+create table QA.users (
+id int primary key,
+first_name varchar(255) not null,
+last_name varchar(255) not null,
+email varchar(255) not null,
+pasword varchar(255) not null
+);
+create table QA.cars (
+id int primary key,
+user_id int,
+foreign key (user_id) references users (id),
+car_brand_id int,
+foreign key (car_brand_id) references car_brands (id),
+car_model_id int,
+foreign key (car_model_id) references car_models (id),
+mileage float,
+initial_mileage float
+);
+insert into QA.users (id, first_name, last_name) values (1,'Tetiana','Shunievych');
+insert into QA.users (id, first_name, last_name) values (2, 'Masha', 'Semkena');
+select * from QA.users;
+insert into QA.car_brands (id, title) values (1, 'BMW');
+insert into QA.car_brands (id, title) values (2, 'audi');
+insert into QA.car_brands (id, title) values (3, 'porsche');
+select * from QA.car_brands;
+insert into QA.car_brands (id, title) values (4, 'mercedes');
+insert into QA.car_brands (id, title) values (5, 'lexus');
+insert into QA.car_models (id, title) values (1,'BMW');
+insert into QA.cars (id, mileage) values (1, 2000);
+
+
